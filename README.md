@@ -1,24 +1,14 @@
 # How-to-remove-comma-in-category-axis-label-in-Blazor-chart
 
-This article explains how to remove comma from category axis label in Blazor chart.
+This article explains how to remove comma in indexed category axis labels in Blazor Chart Component.
 
-**Removing comma from the category axis label using OnAxisLabelRenderEvent in blazor chart component**
+**Customize to remove comma in indexed category axis labels in Blazor chart**
 
-In this article we, you can see how to remove comma in category axis in [Blazor chart](https://www.syncfusion.com/blazor-components/blazor-charts) while using **indexed category axis** by setting the [IsIndexed](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartCommonAxis.html#Syncfusion_Blazor_Charts_ChartCommonAxis_IsIndexed) property in the axis to **true**
+To display the x-values of the first series in the axis labels, instead of showing all x-values separated by commas, you can use the [OnAxisLaberRender](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartEvents.html#Syncfusion_Blazor_Charts_ChartEvents_OnAxisLabelRender) event in the **Indexed Category Axis**. This event allows customization of the axis labels according to your preferences.
 
-We can remove the comma from the axis label by using [OnAxisLaberRender](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartEvents.html#Syncfusion_Blazor_Charts_ChartEvents_OnAxisLabelRender) event. This event triggers before each axis label are rendered.
+The code snippet below demonstrates how to remove commas from **Indexed Category Axis** labels using the [OnAxisLaberRender](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartEvents.html#Syncfusion_Blazor_Charts_ChartEvents_OnAxisLabelRender) event.
 
-The following properties are available in the [AxisLabelRenderEventArgs](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.AxisLabelRenderEventArgs.html).
-
-- [LabelStyle](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.AxisLabelRenderEventArgs.html#Syncfusion_Blazor_Charts_AxisLabelRenderEventArgs_LabelStyle) – Specifies the font information of the axis label.
-- [Text](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.AxisLabelRenderEventArgs.html#Syncfusion_Blazor_Charts_AxisLabelRenderEventArgs_Text) – Specifies the text to be displayed in the axis label.
-- [Value](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.AxisLabelRenderEventArgs.html#Syncfusion_Blazor_Charts_AxisLabelRenderEventArgs_Value) – Specifies the value of the axis label.
-
-We can remove the comma from the axis label using [Text](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.AxisLabelRenderEventArgs.html#Syncfusion_Blazor_Charts_AxisLabelRenderEventArgs_Text) of the event args.
-
-The following code example illustrates how to remove comma from axis label in blazor chart.
-
-**C#**
+**Index.razor**
 
 ```cshtml
 
@@ -77,17 +67,12 @@ The following code example illustrates how to remove comma from axis label in bl
 
 ```
 
-The following screenshot illustrate the output of the above code snippet.
+Comparatively, the screenshots below illustrate the outcome of the preceding code snippet.
 
 **Output:**
-
-Figure 1: Before solution.
-
-![](/before-solution.png)
-
-Figure 2: After solution
-
-![](/after-solution.png)
+| Before Solution | After Solution |
+| ------ | ------ |
+|  ![Blazor chart before removing comma in indexed category axis labels](before-solution.png) |  ![Blazor chart after removing comma in indexed category axis labels](after-solution.png) | 
 
 **Conclusion**
 
