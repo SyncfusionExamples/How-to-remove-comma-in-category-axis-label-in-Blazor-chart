@@ -1,86 +1,63 @@
-# How-to-remove-comma-in-category-axis-label-in-Blazor-chart
+# How to Remove Comma-Separated Indexed Category Axis Labels in Syncfusion Blazor Chart
 
-This article explains how to remove comma in indexed category axis labels in Blazor Chart Component.
+## Overview
 
-**Customize to remove comma in indexed category axis labels in Blazor chart**
+This sample demonstrates how to customize indexed category axis labels in Syncfusion [Blazor Charts](https://www.syncfusion.com/blazor-components/blazor-charts). When multiple series are displayed with an indexed category axis, the chart can generate axis labels that contain multiple category values separated by commas. The sample handles the `OnAxisLabelRender` event and modifies the label text so that only the first category value is displayed on the primary X-axis.
 
-To display the x-values of the first series in the axis labels, instead of showing all x-values separated by commas, you can use the [OnAxisLaberRender](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartEvents.html#Syncfusion_Blazor_Charts_ChartEvents_OnAxisLabelRender) event in the **Indexed Category Axis**. This event allows customization of the axis labels according to your preferences.
+This approach helps improve chart readability when multiple series contain different category values but a simplified axis presentation is preferred.
 
-The code snippet below demonstrates how to remove commas from **Indexed Category Axis** labels using the [OnAxisLaberRender](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartEvents.html#Syncfusion_Blazor_Charts_ChartEvents_OnAxisLabelRender) event.
+## Key Features
 
-**Index.razor**
+- Uses the `SfChart` component to render chart data.
+- Configures the primary X-axis with `IsIndexed="true"`.
+- Sets the axis `ValueType` to `Category`.
+- Uses the `ChartEvents` component and the `OnAxisLabelRender` event.
+- Receives label information through `AxisLabelRenderEventArgs`.
+- Identifies the primary X-axis through `args.Axis.Name`.
+- Customizes axis label text through the `args.Text` property.
+- Renders multiple column series using `ChartSeries`.
+- Binds chart data using the `DataSource`, `XName`, and `YName` properties.
+- Uses `ChartSeriesType.Column` for series visualization.
 
-```cshtml
+## Prerequisites
 
-@using Syncfusion.Blazor.Charts
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/)
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet) compatible with the project's target framework
 
-<SfChart>
+## How to Run the Project
 
-    <ChartPrimaryXAxis IsIndexed="true" ValueType="Syncfusion.Blazor.Charts.ValueType.Category">
-    </ChartPrimaryXAxis>
+**Visual Studio 2022**
 
-    <ChartEvents OnAxisLabelRender="OnLabelRender"></ChartEvents>
+1. Clone or download the repository.
+2. Open the project file from the `RemoveComma` project folder.
+3. Restore NuGet packages when prompted.
+4. Build the project.
+5. Run the application using **Ctrl+F5**.
 
-    <ChartSeriesCollection>
-        <ChartSeries DataSource="@WeatherReports1" XName="X" YName="Y" Type="ChartSeriesType.Column">
-        </ChartSeries>
-        <ChartSeries DataSource="@WeatherReports2" XName="X" YName="Y" Type="ChartSeriesType.Column">
-        </ChartSeries>
-    </ChartSeriesCollection>
+**Visual Studio Code**
 
-</SfChart>
+1. Open the repository folder in Visual Studio Code.
+2. Open the integrated terminal.
+3. Navigate to the project directory.
 
-@code {
-    
-    public class WeatherData
-    {
-        public string X { get; set; }
-        public double Y { get; set; }
-    }
-
-    public List<WeatherData> WeatherReports1 = new List<WeatherData>
-    {
-        new WeatherData{ X= "Myanmar", Y= 7.3 },
-        new WeatherData{ X= "India", Y= 7.9 },
-        new WeatherData{ X= "Bangladesh", Y= 6.8 },
-        new WeatherData{ X= "Cambodia", Y=7.0 },
-        new WeatherData{ X= "China", Y= 6.9 }
-    };
-
-    public List<WeatherData> WeatherReports2 = new List<WeatherData>
-    {
-        new WeatherData{ X= "Poland", Y=2.7 },
-        new WeatherData{ X= "Australia", Y=2.5 },
-        new WeatherData{ X= "Singapore", Y=2.0 },
-        new WeatherData{ X= "Canada", Y=1.4 },
-        new WeatherData{ X= "Germany", Y=1.8 }
-    };
-
-    public void OnLabelRender(AxisLabelRenderEventArgs args)
-    {
-        if(args.Axis.Name == "PrimaryXAxis")
-        {
-            args.Text = args.Text.Split(',')[0].Trim();
-        }
-    }
-}
-
+```bash
+cd RemoveComma
+dotnet restore
+dotnet run
 ```
 
-Comparatively, the screenshots below illustrate the outcome of the preceding code snippet.
+4. Open the local URL displayed in the console after the application starts.
 
-**Output:**
-| Before Solution | After Solution |
-| ------ | ------ |
-|  ![Blazor chart before removing comma in indexed category axis labels](before-solution.png) |  ![Blazor chart after removing comma in indexed category axis labels](after-solution.png) | 
+## Project Structure
 
-**Conclusion**
+`Pages/Index.razor` - Hosts the Syncfusion Blazor Chart sample, configures the indexed category axis, defines chart series, supplies sample data, and handles axis label customization through `OnAxisLabelRender`.
 
-I hope you enjoyed learning how remove comma from axis label in Blazor Chart Component.
+## Support and Feedback
 
-You can refer to our [Blazor Chart feature tour](https://www.syncfusion.com/blazor-components/blazor-charts) page to know about its other groundbreaking feature representations and [documentation](https://blazor.syncfusion.com/documentation/chart/getting-started), and how to quickly get started for configuration specifications. You can also explore our [Blazor Chart example](https://blazor.syncfusion.com/demos/chart/line?theme=bootstrap5) to understand how to create and manipulate data.
+- For general product questions, visit the [Syncfusion Community Forum](https://www.syncfusion.com/forums) or [Syncfusion Support](https://www.syncfusion.com/support).
+- To report an issue specific to this sample, open a GitHub issue in this repository.
+- Refer to the Syncfusion Blazor Chart documentation: https://help.syncfusion.com/chart-sdk/blazor/charts/getting-started
 
-For current customers, you can check out our components from the [License and Downloads](https://www.syncfusion.com/sales/teamlicense) page. If you are new to Syncfusion, you can try our 30-day [free trial](https://www.syncfusion.com/downloads/blazor) to check out our other controls.
+## License
 
-If you have any queries or require clarifications, please let us know in the comments section below. You can also contact us through our [support forums](https://www.syncfusion.com/forums), [support portal](https://support.syncfusion.com/create), or [feedback portal](https://www.syncfusion.com/feedback/blazor-components?control=charts). We are always happy to assist you!
-
+This is a Syncfusion sample project provided to demonstrate product usage. Review the [Syncfusion license terms](https://www.syncfusion.com/sales/pricing?category=ui-components) before using Syncfusion components in your own applications.
